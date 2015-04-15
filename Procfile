@@ -1,1 +1,1 @@
-web:    java -cp target/classes:target/dependency/* edu/uniandes/ecos/regresioncorrelacion/PrincipalRC
+web:    java -cp target/classes:target/dependency/* edu/uniandes/ecos/controlador/ControladorWeb
