@@ -94,7 +94,15 @@ public class ControladorWeb extends HttpServlet{
         }
     }
     
-    private void ejercicio1(HttpServletRequest req, HttpServletResponse resp) {
+    public void paginaError(Exception e, HttpServletResponse resp) throws ServletException, IOException{
+        String html = obtenerHTML("src/main/java/edu/uniandes/ecos/vista/error.html", resp);
+        html = html.replace("MesajeError", e.getMessage());
+        PrintWriter out = resp.getWriter();
+        out.println(html);
+        resp.getWriter().print(out);
+    }
+    
+    private void ejercicio1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try{
             ArrayList<DataEjercicio1_DatosProyecto> listaProyectos = integrador.ejercicio1();
             String html = obtenerHTML("src/main/java/edu/uniandes/ecos/vista/VistaEjercicio1.html", resp);
@@ -126,10 +134,11 @@ public class ControladorWeb extends HttpServlet{
         }
         catch(Exception e){
             System.out.println("Error "+e.getMessage());
+            paginaError(e, resp);
         }
     }
     
-    private void ejercicio2(HttpServletResponse resp) {
+    private void ejercicio2(HttpServletResponse resp) throws ServletException, IOException {
         try{
             String html = obtenerHTML("src/main/java/edu/uniandes/ecos/vista/VistaEjercicio2.html", resp);
             if(local)
@@ -140,6 +149,7 @@ public class ControladorWeb extends HttpServlet{
         }
         catch(Exception e){
             System.out.println("Error "+e.getMessage());
+            paginaError(e, resp);
         }
     }
     
