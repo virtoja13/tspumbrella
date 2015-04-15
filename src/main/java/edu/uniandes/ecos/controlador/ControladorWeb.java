@@ -27,7 +27,7 @@ public class ControladorWeb extends HttpServlet{
 
     Integrador integrador = new Integrador();
     //Si local = true entonces se apuntara al servidor local, en caso contrario apuntara a http://tspumbrella.herokuapp.com
-    private static boolean local = true;
+    private static boolean local = false;
     
     /**
      * Metodo Main de la clase ControladorWeb
@@ -145,8 +145,6 @@ public class ControladorWeb extends HttpServlet{
             String html = obtenerHTML("src/main/java/edu/uniandes/ecos/vista/VistaEjercicio2.html", resp);
             if(local)
                 html = html.replaceAll("http://tspumbrella.herokuapp.com", "http://localhost:8080");
-            String a = null;
-            a.equals("");
             PrintWriter out = resp.getWriter();
             out.print(html);
             resp.getWriter().print(out);
